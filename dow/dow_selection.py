@@ -36,6 +36,22 @@ See :ref:`dow-selection-solution`.
 
 from numpy import loadtxt, sum, where
 import matplotlib.pyplot as plt
+
+def first_exercise(dow):
+    return None
+
+def second_exercise(dow):
+    return None
+
+def third_exercise(dow):
+    return None
+
+def fourth_exercise(dow):
+    return None
+
+def fifth_exercise(dow):
+    return None
+
 # Constants that indicate what data is held in each column of
 # the 'dow' array.
 OPEN = 0
@@ -45,10 +61,22 @@ CLOSE = 3
 VOLUME = 4
 ADJ_CLOSE = 5
 
+if __name__ == '__main__':
+    dow = loadtxt('dow.csv', delimiter=',')
+    print('First exercise:')
+    print(first_exercise(dow))
+    print('Second exercise:')
+    print(second_exercise(dow))
+    print('Third exercise')
+    print(third_exercise(dow))
+    print('Fourth exercise')
+    print(fourth_exercise(dow))
+    print('Fifth exercise')
+    print(fifth_exercise(dow))
+
 # 0. The data has been loaded from a .csv file for you.
 
 # 'dow' is our NumPy array that we will manipulate.
-dow = loadtxt('dow.csv', delimiter=',')
 
 # 1. Create a "mask" array that indicates which rows have a volume
 #    greater than 5.5 billion.

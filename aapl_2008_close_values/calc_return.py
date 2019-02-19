@@ -27,10 +27,42 @@ highest x coordinate. Use IPython to learn about matplotlib's `plt.xlim` functio
 and make the limits of your plot tighter.
 """
 from __future__ import print_function
-from numpy import arange, loadtxt, zeros
+import numpy as np
 import matplotlib.pyplot as plt
 
-prices = loadtxt("aapl_2008_close_values.csv", usecols=[1], delimiter=",")
 
-print("Prices for AAPL stock in 2008:")
-print(prices)
+def first_exercise(prices):
+    return [(prices[index] - prices[index-1])/prices[index-1] for index in np.arange(1, prices.size)]
+
+
+def second_exercise(returns, ax):
+    ax.set(xlabel='Relevation time', ylabel='Return %',
+           title='Apple to eat, I am hungry')
+    percentages = [value * 100 for value in returns]
+    ax.plot(np.arange(0, len(percentages)), percentages, label='Returns')
+    return None
+
+
+def third_exercise(returns, padding=1):
+    plt.xlim(-padding, len(returns) + padding)
+    return None
+
+
+if __name__ == '__main__':
+    prices = np.loadtxt("aapl_2008_close_values.csv",
+                        usecols=[1], delimiter=",")
+    print("Prices for AAPL stock in 2008:")
+    print(prices)
+    print('First exercise:')
+    returns = first_exercise(prices)
+    print(returns)
+
+    fig, ax = plt.subplots()
+
+    print('Second exercise:')
+    print(second_exercise(returns, ax))
+    print('Third exercise')
+    print(third_exercise(returns))
+
+    plt.legend()
+    plt.show()
