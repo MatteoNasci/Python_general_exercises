@@ -32,14 +32,13 @@ import matplotlib.pyplot as plt
 
 
 def first_exercise(prices):
-    return [(prices[index] - prices[index-1])/prices[index-1] for index in np.arange(1, prices.size)]
+    return np.array([(prices[index] - prices[index-1])/prices[index-1] for index in np.arange(1, prices.size)])
 
 
 def second_exercise(returns, ax):
     ax.set(xlabel='Relevation time', ylabel='Return %',
            title='Apple to eat, I am hungry')
-    percentages = [value * 100 for value in returns]
-    ax.plot(np.arange(0, len(percentages)), percentages, label='Returns')
+    ax.plot(np.arange(0, len(returns)), returns * 100, label='Returns')
     return None
 
 
