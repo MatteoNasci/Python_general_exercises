@@ -34,23 +34,8 @@ Bonus
 See :ref:`dow-selection-solution`.
 """
 
-from numpy import loadtxt, sum, where
+from numpy import loadtxt, sum, where, array, reshape, arange
 import matplotlib.pyplot as plt
-
-def first_exercise(dow):
-    return None
-
-def second_exercise(dow):
-    return None
-
-def third_exercise(dow):
-    return None
-
-def fourth_exercise(dow):
-    return None
-
-def fifth_exercise(dow):
-    return None
 
 # Constants that indicate what data is held in each column of
 # the 'dow' array.
@@ -61,18 +46,51 @@ CLOSE = 3
 VOLUME = 4
 ADJ_CLOSE = 5
 
+
+def first_exercise(dow, minimum_volume=5_500_000_000):
+    return dow[:, VOLUME] >= minimum_volume
+
+
+def second_exercise(high_volume_mask):
+    return sum(high_volume_mask)
+
+
+def third_exercise(dow, high_volume_mask):
+    return [index for index in arange(0, len(dow)) if high_volume_mask[index]]
+
+
+def fourth_exercise(dow, ax):
+    ax.set(xlabel='Relevation time', ylabel='Adjusted close',
+           title='MONEY, MY PRECIOUS MONEY!')
+    ax.plot(arange(0, len(dow)), dow[:, ADJ_CLOSE], label='Adjusted close')
+    return None
+
+
+def fifth_exercise(dow, high_volume_rows, ax):
+    ax.scatter(high_volume_rows, dow[high_volume_rows, ADJ_CLOSE],
+               marker='o', color='red', label='Adj close with high volume')
+    return None
+
+
 if __name__ == '__main__':
     dow = loadtxt('dow.csv', delimiter=',')
     print('First exercise:')
-    print(first_exercise(dow))
+    high_volume_mask = first_exercise(dow)
+    print(high_volume_mask)
     print('Second exercise:')
-    print(second_exercise(dow))
+    print(second_exercise(high_volume_mask))
     print('Third exercise')
-    print(third_exercise(dow))
+    high_volume_rows = third_exercise(dow, high_volume_mask)
+    print(high_volume_rows)
+
+    fig, ax = plt.subplots()
+
     print('Fourth exercise')
-    print(fourth_exercise(dow))
+    print(fourth_exercise(dow, ax))
     print('Fifth exercise')
-    print(fifth_exercise(dow))
+    print(fifth_exercise(dow, high_volume_rows, ax))
+    plt.legend()
+    plt.show()
 
 # 0. The data has been loaded from a .csv file for you.
 
