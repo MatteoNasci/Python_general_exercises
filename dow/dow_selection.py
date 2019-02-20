@@ -55,8 +55,8 @@ def second_exercise(high_volume_mask):
     return sum(high_volume_mask)
 
 
-def third_exercise(dow, high_volume_mask):
-    return [index for index in arange(0, len(dow)) if high_volume_mask[index]]
+def third_exercise(high_volume_mask):
+    return where(high_volume_mask)
 
 
 def fourth_exercise(dow, ax):
@@ -80,7 +80,7 @@ if __name__ == '__main__':
     print('Second exercise:')
     print(second_exercise(high_volume_mask))
     print('Third exercise')
-    high_volume_rows = third_exercise(dow, high_volume_mask)
+    high_volume_rows = third_exercise(high_volume_mask)
     print(high_volume_rows)
 
     fig, ax = plt.subplots()
